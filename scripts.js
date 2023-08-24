@@ -65,5 +65,17 @@ function operatorButtonHandler() {
     });
 }
 
+function evaluateNumbers() {
+    const equalButton = document.querySelector("#equal-to-button");
+    equalButton.addEventListener("click", () => {
+        let result = operate(inputFirstNumber, operator, inputSecondNumber);
+        inputFirstNumber = "";
+        inputSecondNumber = "";
+        operator = "";
+        calculatorDisplay.textContent = result;
+    });
+}
+
 numberButtonHandler();
 operatorButtonHandler();
+evaluateNumbers();
