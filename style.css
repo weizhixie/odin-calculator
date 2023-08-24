@@ -58,3 +58,24 @@ body {
 #equal-to-button {
     width: 148px;
 }
+
+header{
+    margin: 30px;
+    margin-bottom: 60px;
+    font-size: 36px;
+}
+
+footer {
+    background-color: #1f2937;
+    color: #e5e7eb;
+    width: 100vw;
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+}
+
+a {
+    text-decoration: none;
+}

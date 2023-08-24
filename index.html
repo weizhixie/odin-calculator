@@ -10,6 +10,10 @@
 </head>
 
 <body>
+    <header>
+        <h1>Calculator</h1>
+    </header>
+
     <main>
         <section class="calculator-container">
             <section class="calculator-content">
@@ -41,6 +45,18 @@
             </section>
         </section>
     </main>
+
+    <footer>
+        <div class="copyright">Copyright &copy; W.Xie
+            <span class="current-year"></span>
+            <script>
+                document.querySelector(".current-year").textContent = new Date().getFullYear();
+            </script>
+        </div>
+        <a href="https://github.com/weizhixie" target="_blank">
+            &nbsp;<img height="30" width="30" src="images/github-mark-white.png" />
+        </a>
+    </footer>
 </body>
 
 </html>
