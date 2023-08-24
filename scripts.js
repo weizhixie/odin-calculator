@@ -1,3 +1,5 @@
+let inputFirstNumber = "";
+
 function add(firstNumber, secondNumber) {
     return firstNumber + secondNumber;
 }
@@ -33,3 +35,17 @@ function operate(firstNumber, operator, secondNumber) {
 
     return result;
 }
+
+function displayNumber() {
+    const calculatorDisplay = document.querySelector(".calculator-display");
+    const numberButtons = document.querySelectorAll(".number-buttons");
+
+    numberButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            calculatorDisplay.textContent += button.value;
+            inputFirstNumber += button.value;
+        });
+    });
+}
+
+displayNumber();
