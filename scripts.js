@@ -1,7 +1,11 @@
 let inputFirstNumber = "";
+let inputSecondNumber = "";
+let operator = "";
+
+const calculatorDisplay = document.querySelector(".calculator-display");
 
 function add(firstNumber, secondNumber) {
-    return firstNumber + secondNumber;
+    return +firstNumber + +secondNumber;
 }
 
 function subtract(firstNumber, secondNumber) {
@@ -36,16 +40,30 @@ function operate(firstNumber, operator, secondNumber) {
     return result;
 }
 
-function displayNumber() {
-    const calculatorDisplay = document.querySelector(".calculator-display");
+function numberButtonHandler() {
     const numberButtons = document.querySelectorAll(".number-buttons");
-
     numberButtons.forEach((button) => {
         button.addEventListener("click", () => {
-            calculatorDisplay.textContent += button.value;
-            inputFirstNumber += button.value;
+            if (operator === "") {
+                inputFirstNumber += button.value;
+                calculatorDisplay.textContent = inputFirstNumber;
+            } else {
+                inputSecondNumber += button.value;
+                calculatorDisplay.textContent = inputSecondNumber;
+            }
         });
     });
 }
 
-displayNumber();
+function operatorButtonHandler() {
+    const operatorButtons = document.querySelectorAll(".operator-buttons");
+    operatorButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            operator = button.value;
+            calculatorDisplay.textContent = "";
+        });
+    });
+}
+
+numberButtonHandler();
+operatorButtonHandler();
