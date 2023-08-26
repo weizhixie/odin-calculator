@@ -35,7 +35,7 @@ function operate(firstNumber, operator, secondNumber) {
             result = divide(firstNumber, secondNumber);
             break;
     }
-    return result;
+    return Math.round(result * 100) / 100;
 }
 
 function setCalculatorDisplay(displayContent) {
