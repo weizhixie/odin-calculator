@@ -1,6 +1,7 @@
 let inputFirstNumber = "";
 let inputSecondNumber = "";
 let operator = "";
+let currentResult = "";
 
 function add(firstNumber, secondNumber) {
     return +firstNumber + +secondNumber;
@@ -51,7 +52,7 @@ function numberButtonHandler() {
                 setCalculatorDisplay(inputFirstNumber);
             } else {
                 inputSecondNumber += button.value;
-                setCalculatorDisplay(inputSecondNumber)
+                setCalculatorDisplay(inputSecondNumber);
             }
         });
     });
@@ -61,8 +62,13 @@ function operatorButtonHandler() {
     const operatorButtons = document.querySelectorAll(".operator-buttons");
     operatorButtons.forEach((button) => {
         button.addEventListener("click", () => {
+            if (inputSecondNumber) {
+                currentResult = operate(inputFirstNumber, operator, inputSecondNumber);
+                inputFirstNumber = currentResult;
+                inputSecondNumber = "";
+                setCalculatorDisplay(currentResult);
+            }
             operator = button.value;
-            setCalculatorDisplay("")
         });
     });
 }
@@ -74,7 +80,7 @@ function evaluateNumbers() {
         inputFirstNumber = "";
         inputSecondNumber = "";
         operator = "";
-        setCalculatorDisplay(result)
+        setCalculatorDisplay(result);
     });
 }
 
