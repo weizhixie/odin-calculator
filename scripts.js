@@ -2,8 +2,6 @@ let inputFirstNumber = "";
 let inputSecondNumber = "";
 let operator = "";
 
-const calculatorDisplay = document.querySelector(".calculator-display");
-
 function add(firstNumber, secondNumber) {
     return +firstNumber + +secondNumber;
 }
@@ -36,8 +34,12 @@ function operate(firstNumber, operator, secondNumber) {
             result = divide(firstNumber, secondNumber);
             break;
     }
-
     return result;
+}
+
+function setCalculatorDisplay(displayContent) {
+    const calculatorDisplay = document.querySelector(".calculator-display");
+    calculatorDisplay.textContent = displayContent;
 }
 
 function numberButtonHandler() {
@@ -46,10 +48,10 @@ function numberButtonHandler() {
         button.addEventListener("click", () => {
             if (operator === "") {
                 inputFirstNumber += button.value;
-                calculatorDisplay.textContent = inputFirstNumber;
+                setCalculatorDisplay(inputFirstNumber);
             } else {
                 inputSecondNumber += button.value;
-                calculatorDisplay.textContent = inputSecondNumber;
+                setCalculatorDisplay(inputSecondNumber)
             }
         });
     });
@@ -60,7 +62,7 @@ function operatorButtonHandler() {
     operatorButtons.forEach((button) => {
         button.addEventListener("click", () => {
             operator = button.value;
-            calculatorDisplay.textContent = "";
+            setCalculatorDisplay("")
         });
     });
 }
@@ -72,7 +74,7 @@ function evaluateNumbers() {
         inputFirstNumber = "";
         inputSecondNumber = "";
         operator = "";
-        calculatorDisplay.textContent = result;
+        setCalculatorDisplay(result)
     });
 }
 
