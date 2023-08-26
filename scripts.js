@@ -76,11 +76,12 @@ function operatorButtonHandler() {
 function evaluateNumbers() {
     const equalButton = document.querySelector("#equal-to-button");
     equalButton.addEventListener("click", () => {
-        let result = operate(inputFirstNumber, operator, inputSecondNumber);
-        inputFirstNumber = "";
-        inputSecondNumber = "";
-        operator = "";
-        setCalculatorDisplay(result);
+        if (inputSecondNumber) {
+            currentResult = operate(inputFirstNumber, operator, inputSecondNumber);
+            inputFirstNumber = currentResult;
+            inputSecondNumber = "";
+            setCalculatorDisplay(currentResult);
+        }
     });
 }
 
