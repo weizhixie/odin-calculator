@@ -1,7 +1,6 @@
 let inputFirstNumber = "";
 let inputSecondNumber = "";
-let operator = "";
-let currentResult = "";
+let inputOperator = "";
 
 function add(firstNumber, secondNumber) {
     return +firstNumber + +secondNumber;
@@ -38,53 +37,54 @@ function operate(firstNumber, operator, secondNumber) {
     return Math.round(result * 100) / 100;
 }
 
-function setCalculatorDisplay(displayContent) {
+function updateCalculatorDisplay(displayContent) {
     const calculatorDisplay = document.querySelector(".calculator-display");
     calculatorDisplay.textContent = displayContent;
 }
 
-function numberButtonHandler() {
+function handleNumberButtonClick() {
     const numberButtons = document.querySelectorAll(".number-buttons");
     numberButtons.forEach((button) => {
         button.addEventListener("click", () => {
-            if (operator === "") {
+            if (inputOperator === "") {
                 inputFirstNumber += button.value;
-                setCalculatorDisplay(inputFirstNumber);
+                updateCalculatorDisplay(inputFirstNumber);
             } else {
                 inputSecondNumber += button.value;
-                setCalculatorDisplay(inputSecondNumber);
+                updateCalculatorDisplay(inputSecondNumber);
             }
         });
     });
 }
 
-function operatorButtonHandler() {
+function handleOperatorButtonClick() {
     const operatorButtons = document.querySelectorAll(".operator-buttons");
     operatorButtons.forEach((button) => {
         button.addEventListener("click", () => {
             if (inputSecondNumber) {
-                currentResult = operate(inputFirstNumber, operator, inputSecondNumber);
-                inputFirstNumber = currentResult;
-                inputSecondNumber = "";
-                setCalculatorDisplay(currentResult);
+                calculateAndDisplayResult();
             }
-            operator = button.value;
+            inputOperator = button.value;
         });
     });
 }
 
-function evaluateNumbers() {
+function handleEqualButtonClick() {
     const equalButton = document.querySelector("#equal-to-button");
     equalButton.addEventListener("click", () => {
         if (inputSecondNumber) {
-            currentResult = operate(inputFirstNumber, operator, inputSecondNumber);
-            inputFirstNumber = currentResult;
-            inputSecondNumber = "";
-            setCalculatorDisplay(currentResult);
+            calculateAndDisplayResult();
         }
     });
 }
 
-numberButtonHandler();
-operatorButtonHandler();
-evaluateNumbers();
+function calculateAndDisplayResult() {
+    let currentResult = operate(inputFirstNumber, inputOperator, inputSecondNumber);
+    inputFirstNumber = currentResult;
+    inputSecondNumber = "";
+    updateCalculatorDisplay(currentResult);
+}
+
+handleNumberButtonClick();
+handleOperatorButtonClick();
+handleEqualButtonClick();
