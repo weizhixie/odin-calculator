@@ -95,9 +95,9 @@ function calculateAndDisplayResult() {
 }
 
 function validateInput(input) {
-    if (input.length === 1 && input == 0) {
-        return input;
-    }
+    if (input[0] === ".") return `0${input}`;
+
+    if (input.length === 1 && input == 0) return input;
 
     if (input.toString().split('.').length > 1) {
         return input.toString().slice("").replace(/\./g, (match, offset) => {
