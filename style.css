@@ -59,7 +59,7 @@ body {
     width: 148px;
 }
 
-header{
+header {
     margin: 30px;
     margin-bottom: 60px;
     font-size: 36px;
@@ -78,4 +78,20 @@ footer {
 
 a {
     text-decoration: none;
+}
+
+.operator-buttons:hover,
+#equal-to-button:hover {
+    background-color: #06dc06;
+    transform: scale(0.95);
+}
+
+.number-buttons:hover {
+    background-color: #faebd7;
+    transform: scale(0.95);
+}
+
+.delete-button:hover {
+    background-color: #b90303;
+    transform: scale(0.95);
 }
