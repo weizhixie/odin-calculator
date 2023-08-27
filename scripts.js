@@ -18,6 +18,10 @@ function divide(firstNumber, secondNumber) {
     return firstNumber / secondNumber;
 }
 
+function exponent(firstNumber, secondNumber) {
+    return Math.pow(firstNumber, secondNumber);
+}
+
 function operate(firstNumber, operator, secondNumber) {
     let result = 0;
     switch (operator) {
@@ -32,6 +36,9 @@ function operate(firstNumber, operator, secondNumber) {
             break;
         case "/":
             result = divide(firstNumber, secondNumber);
+            break;
+        case "**":
+            result = exponent(firstNumber, secondNumber);
             break;
     }
     return Math.round(result * 100) / 100;
