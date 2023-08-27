@@ -79,10 +79,18 @@ function handleEqualButtonClick() {
 function calculateAndDisplayResult() {
     if (inputSecondNumber) {
         let currentResult = operate(inputFirstNumber, inputOperator, inputSecondNumber);
-        inputFirstNumber = validateInput(currentResult);
-        inputSecondNumber = "";
-        inputOperator = "";
-        updateCalculatorDisplay(currentResult);
+        if (!Number.isFinite(currentResult)) {
+            updateCalculatorDisplay("Oops! Something Went Wrong");
+            inputFirstNumber = "";
+            inputSecondNumber = "";
+            inputOperator = "";
+        }
+        else {
+            inputFirstNumber = validateInput(currentResult);
+            inputSecondNumber = "";
+            inputOperator = "";
+            updateCalculatorDisplay(currentResult);
+        }
     }
 }
 
