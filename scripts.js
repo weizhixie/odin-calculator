@@ -49,9 +49,11 @@ function handleNumberButtonClick() {
             if (inputOperator === "") {
                 inputFirstNumber += button.value;
                 updateCalculatorDisplay(inputFirstNumber);
+                inputFirstNumber = validateInput(inputFirstNumber);
             } else {
                 inputSecondNumber += button.value;
                 updateCalculatorDisplay(inputSecondNumber);
+                inputSecondNumber = validateInput(inputSecondNumber);
             }
         });
     });
@@ -75,13 +77,17 @@ function handleEqualButtonClick() {
 }
 
 function calculateAndDisplayResult() {
-    if (inputSecondNumber) {
+    if (inputOperator || inputSecondNumber) {
         let currentResult = operate(inputFirstNumber, inputOperator, inputSecondNumber);
-        inputFirstNumber = currentResult;
+        inputFirstNumber = validateInput(currentResult);
         inputSecondNumber = "";
         inputOperator = "";
         updateCalculatorDisplay(currentResult);
     }
+}
+
+function validateInput(input) {
+    return input.toString().slice("").replace(/^0/, "");
 }
 
 handleNumberButtonClick();
