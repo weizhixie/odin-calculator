@@ -89,10 +89,37 @@ function calculateAndDisplayResult() {
 function validateInput(input) {
     if (input.length === 1 && input == 0) {
         return input;
-    } 
+    }
     return input.toString().slice("").replace(/^0/, "");
+}
+
+function handleDeleteButtonClick() {
+    const deleteButtons = document.querySelectorAll(".delete-button");
+    deleteButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            if (button.value === "ac") {
+                inputFirstNumber = "";
+                inputSecondNumber = "";
+                inputOperator = "";
+                updateCalculatorDisplay(0);
+            } else if (button.value === "del") {
+                sliceLastCharacter();
+            }
+        });
+    });
+}
+
+function sliceLastCharacter() {
+    if (inputSecondNumber) {
+        inputSecondNumber = inputSecondNumber.slice(0, -1);
+        updateCalculatorDisplay(inputSecondNumber);
+    } else if (inputFirstNumber) {
+        inputFirstNumber = inputFirstNumber.slice(0, -1);
+        updateCalculatorDisplay(inputFirstNumber);
+    }
 }
 
 handleNumberButtonClick();
 handleOperatorButtonClick();
 handleEqualButtonClick();
+handleDeleteButtonClick();
