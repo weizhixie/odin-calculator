@@ -61,9 +61,7 @@ function handleOperatorButtonClick() {
     const operatorButtons = document.querySelectorAll(".operator-buttons");
     operatorButtons.forEach((button) => {
         button.addEventListener("click", () => {
-            if (inputSecondNumber) {
-                calculateAndDisplayResult();
-            }
+            calculateAndDisplayResult();
             inputOperator = button.value;
         });
     });
@@ -72,17 +70,18 @@ function handleOperatorButtonClick() {
 function handleEqualButtonClick() {
     const equalButton = document.querySelector("#equal-to-button");
     equalButton.addEventListener("click", () => {
-        if (inputSecondNumber) {
-            calculateAndDisplayResult();
-        }
+        calculateAndDisplayResult();
     });
 }
 
 function calculateAndDisplayResult() {
-    let currentResult = operate(inputFirstNumber, inputOperator, inputSecondNumber);
-    inputFirstNumber = currentResult;
-    inputSecondNumber = "";
-    updateCalculatorDisplay(currentResult);
+    if (inputSecondNumber) {
+        let currentResult = operate(inputFirstNumber, inputOperator, inputSecondNumber);
+        inputFirstNumber = currentResult;
+        inputSecondNumber = "";
+        inputOperator = "";
+        updateCalculatorDisplay(currentResult);
+    }
 }
 
 handleNumberButtonClick();
