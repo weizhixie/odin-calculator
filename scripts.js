@@ -31,13 +31,13 @@ function operate(firstNumber, operator, secondNumber) {
         case "-":
             result = subtract(firstNumber, secondNumber);
             break;
-        case "*":
+        case "x":
             result = multiply(firstNumber, secondNumber);
             break;
-        case "/":
+        case "÷":
             result = divide(firstNumber, secondNumber);
             break;
-        case "**":
+        case "^":
             result = exponent(firstNumber, secondNumber);
             break;
     }
@@ -45,8 +45,16 @@ function operate(firstNumber, operator, secondNumber) {
 }
 
 function updateCalculatorDisplay(displayContent) {
-    const calculatorDisplay = document.querySelector(".calculator-display");
+    const calculatorDisplay = document.querySelector(".current-numbers");
     calculatorDisplay.textContent = displayContent;
+    displayOperationNumbers();
+}
+
+function displayOperationNumbers() {
+    const operationNumbers = document.querySelector(".operation-numbers");
+    let tempNum = `${inputFirstNumber} ${inputOperator} ${inputSecondNumber}`
+    operationNumbers.textContent = tempNum;
+
 }
 
 function handleNumberButtonClick() {
@@ -72,6 +80,7 @@ function handleOperatorButtonClick() {
         button.addEventListener("click", () => {
             calculateAndDisplayResult();
             inputOperator = button.value;
+            displayOperationNumbers();
         });
     });
 }
@@ -93,10 +102,10 @@ function calculateAndDisplayResult() {
             inputOperator = "";
         }
         else {
+            updateCalculatorDisplay(currentResult);
             inputFirstNumber = validateInput(currentResult);
             inputSecondNumber = "";
             inputOperator = "";
-            updateCalculatorDisplay(currentResult);
         }
     }
 }

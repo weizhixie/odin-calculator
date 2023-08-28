@@ -37,6 +37,7 @@ body {
     background-color: #495057;
     color: #dee2e6;
     display: flex;
+    flex-direction: column;
     justify-content: end;
     align-items: end;
     padding: 5px;
@@ -94,4 +95,8 @@ a {
 .delete-button:hover {
     background-color: #b90303;
     transform: scale(0.95);
+}
+
+.operate-value {
+    font-size: 20px;
 }
