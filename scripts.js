@@ -52,9 +52,14 @@ function updateCalculatorDisplay(displayContent) {
 
 function displayOperationNumbers() {
     const operationNumbers = document.querySelector(".operation-numbers");
-    let tempNum = `${inputFirstNumber} ${inputOperator} ${inputSecondNumber}`
-    operationNumbers.textContent = tempNum;
+    const checkOperator = inputFirstNumber + inputOperator[0];
+    let tempNum = `${inputFirstNumber} ${inputOperator} ${inputSecondNumber}`;
 
+    if (checkOperator === "^" || checkOperator === "÷" || checkOperator === "x"
+        || checkOperator === "-" || checkOperator === "+") {
+        tempNum = `${inputFirstNumber} 0 ${inputOperator} ${inputSecondNumber}`;
+    }
+    operationNumbers.textContent = tempNum;
 }
 
 function handleNumberButtonClick() {
@@ -96,10 +101,10 @@ function calculateAndDisplayResult() {
     if (inputSecondNumber) {
         let currentResult = operate(inputFirstNumber, inputOperator, inputSecondNumber);
         if (!Number.isFinite(currentResult)) {
-            updateCalculatorDisplay("Oops! Something Went Wrong");
             inputFirstNumber = "";
             inputSecondNumber = "";
             inputOperator = "";
+            updateCalculatorDisplay("Oops! Something Went Wrong");
         }
         else {
             updateCalculatorDisplay(currentResult);
@@ -120,7 +125,6 @@ function validateInput(input) {
             return offset === input.toString().slice("").indexOf(".") ? match : "";
         });
     }
-
     return input.toString().slice("").replace(/^0/, "");
 }
 
