@@ -101,9 +101,7 @@ function calculateAndDisplayResult() {
     if (inputSecondNumber) {
         let currentResult = operate(inputFirstNumber, inputOperator, inputSecondNumber);
         if (!Number.isFinite(currentResult)) {
-            inputFirstNumber = "";
-            inputSecondNumber = "";
-            inputOperator = "";
+            emptyData();
             updateCalculatorDisplay("Oops! Something Went Wrong");
         }
         else {
@@ -133,15 +131,19 @@ function handleDeleteButtonClick() {
     deleteButtons.forEach((button) => {
         button.addEventListener("click", () => {
             if (button.value === "ac") {
-                inputFirstNumber = "";
-                inputSecondNumber = "";
-                inputOperator = "";
+                emptyData();
                 updateCalculatorDisplay(0);
             } else if (button.value === "del") {
                 sliceLastCharacter();
             }
         });
     });
+}
+
+function emptyData() {
+    inputFirstNumber = "";
+    inputSecondNumber = "";
+    inputOperator = "";
 }
 
 function sliceLastCharacter() {
@@ -151,6 +153,13 @@ function sliceLastCharacter() {
     } else if (inputFirstNumber) {
         inputFirstNumber = inputFirstNumber.slice(0, -1);
         updateCalculatorDisplay(inputFirstNumber);
+    } else if (inputOperator) {
+        inputOperator = inputOperator.slice(0, -1);
+        updateCalculatorDisplay(inputOperator);
+        if (inputOperator.length === 0) {
+            emptyData();
+            updateCalculatorDisplay(0);
+        }
     }
 }
 
