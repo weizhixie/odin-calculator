@@ -146,20 +146,26 @@ function emptyData() {
     inputOperator = "";
 }
 
+function resetDisplace(input) {
+    if (input.length === 0) {
+        emptyData();
+        updateCalculatorDisplay(0);
+    }
+}
+
 function sliceLastCharacter() {
     if (inputSecondNumber) {
         inputSecondNumber = inputSecondNumber.slice(0, -1);
         updateCalculatorDisplay(inputSecondNumber);
+        resetDisplace(inputSecondNumber);
     } else if (inputFirstNumber) {
         inputFirstNumber = inputFirstNumber.slice(0, -1);
         updateCalculatorDisplay(inputFirstNumber);
+        resetDisplace(inputFirstNumber);
     } else if (inputOperator) {
         inputOperator = inputOperator.slice(0, -1);
         updateCalculatorDisplay(inputOperator);
-        if (inputOperator.length === 0) {
-            emptyData();
-            updateCalculatorDisplay(0);
-        }
+        resetDisplace(inputOperator);
     }
 }
 
