@@ -140,6 +140,40 @@ function handleDeleteButtonClick() {
     });
 }
 
+function handleKeyboardEvent() {
+    document.addEventListener("keydown", (e) => {
+        e.preventDefault();
+        if ((e.key >= 0 && e.key <= 9 || e.key === ".")) {
+            if (inputOperator === "") {
+                inputFirstNumber += e.key;
+                inputFirstNumber = validateInput(inputFirstNumber);
+                updateCalculatorDisplay(inputFirstNumber);
+            } else {
+                inputSecondNumber += e.key;
+                inputSecondNumber = validateInput(inputSecondNumber);
+                updateCalculatorDisplay(inputSecondNumber);
+            }
+        } else if (e.key === "/" || e.key === "*" || e.key === "-" || e.key === "+" || e.key === "^") {
+            let tempOperator = e.key;
+            if (e.key === "*") {
+                tempOperator = "x";
+            } else if (e.key === "/") {
+                tempOperator = "÷";
+            }
+            calculateAndDisplayResult();
+            inputOperator = tempOperator;
+            displayOperationNumbers();
+        } else if (e.key === "Enter") {
+            calculateAndDisplayResult();
+        } else if (e.key === "Backspace") {
+            sliceLastCharacter();
+        } else if (e.key === "Escape") {
+            emptyData();
+            updateCalculatorDisplay(0);
+        }
+    });
+}
+
 function emptyData() {
     inputFirstNumber = "";
     inputSecondNumber = "";
@@ -173,3 +207,4 @@ handleNumberButtonClick();
 handleOperatorButtonClick();
 handleEqualButtonClick();
 handleDeleteButtonClick();
+handleKeyboardEvent();
